@@ -5,10 +5,10 @@ gem 'rails', '4.2.0'
 gem 'rails-api'
 
 group :development do
-  gem 'sqlite3'
   gem 'spring'
 end
 
+gem 'pg'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
