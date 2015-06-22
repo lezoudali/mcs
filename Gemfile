@@ -3,16 +3,17 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.0'
 gem 'rails-api'
-
-group :development do
-  gem 'spring'
-end
-
 gem 'pg'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
+gem 'paranoia', '~> 2.0'
+gem 'devise'
+
+group :development do
+  gem 'spring'
+end
 
 gem 'active_model_serializers'
 
@@ -23,8 +24,8 @@ end
 
 
 group :test do
-  gem "rspec-rails", "~> 2.14"
-  gem "factory_girl_rails"
+  gem 'rspec-rails', '~> 2.14'
+  gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'pry-rails'
 end
