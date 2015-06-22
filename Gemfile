@@ -8,7 +8,6 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
-gem 'paranoia', '~> 2.0'
 gem 'devise'
 
 group :development do
@@ -28,6 +27,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'pry-rails'
+  gem 'shoulda-matchers'
 end
 
 
