@@ -1,7 +1,12 @@
 class Api::V1::UsersController < ApplicationController
 
   def show
-    render json: User.find(params[:id])
+    user = User.find_by_id(params[:id])
+    if user && user.deleted_at
+      render json: {errors: "user deleted", deleted_at: user.deleted_at}, status: 404
+    else
+      render json: user, status: 200
+    end
   end
 
   def create
@@ -13,11 +18,21 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def update
+    user = User.find_by_id(params[:id])
+
+    if user && user.update(user_params)
+      render json: user, status: 200, location: [:api, user]
+    else
+      render json: { errors: user.errors }, status: 422
+    end
+  end
+
   private
 
-    def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
-    end
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
 
 end
 
