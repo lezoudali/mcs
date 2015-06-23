@@ -16,7 +16,7 @@ describe Api::V1::UsersController do
       end
 
       it "returns the user" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response[:email]).to eql @user.email
       end
 
@@ -31,7 +31,7 @@ describe Api::V1::UsersController do
       end
 
       it "returns json representation of when user was deleted" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response.keys).to include(:errors, :deleted_at)
       end
 
@@ -49,7 +49,7 @@ describe Api::V1::UsersController do
       end
 
       it "renders the json representation for the user record just created" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response[:email]).to eql @user_attributes[:email]
       end
 
@@ -65,12 +65,12 @@ describe Api::V1::UsersController do
       end
 
       it "renders an errors json" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response.keys).to include(:errors)
       end
 
       it "renders the json errors on why the user could not be created" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response[:errors][:email]).to include "can't be blank"
       end
 
@@ -93,7 +93,7 @@ describe Api::V1::UsersController do
       end
 
       it "renders the json representation for the updated user" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response[:email]).to eql "newmail@example.com"
         expect(user_response[:name]).to eql "Billy Bob"
       end
@@ -105,16 +105,16 @@ describe Api::V1::UsersController do
       before(:each) do
         @user = FactoryGirl.create :user
         patch :update, { id: @user.id,
-                         user: { email: "bademail.com" } }, format: :json
+                         user: { email: "bademail.com" } }, format: :jsonP
       end
 
       it "renders an errors json" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response.keys).to include(:errors)
       end
 
       it "renders the json errors on whye the user could not be updated" do
-        user_response = JSON.parse(response.body, symbolize_names: true)
+        user_response = json_response
         expect(user_response[:errors][:email]).to include "is invalid"
       end
 
