@@ -2,7 +2,7 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     user = User.find_by_id(params[:id])
-    if user && user.deleted_at
+    if user && user.deleted?
       render json: {errors: "user deleted", deleted_at: user.deleted_at}, status: 404
     else
       render json: user, status: 200
