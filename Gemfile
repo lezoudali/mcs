@@ -27,6 +27,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'pry-rails'
+  gem 'pry-nav'
   gem 'shoulda-matchers'
 end
 
