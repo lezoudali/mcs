@@ -1,22 +1,18 @@
-# 
-
 default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
+  username: mcs
+  password: <%= ENV['MCS_DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
   database: mcs_development
 
-
 test:
   <<: *default
   database: mcs_test
 
-
 production:
   <<: *default
   database: mcs_production
-  username: mcs
-  password: <%= ENV['MCS_DATABASE_PASSWORD'] %>

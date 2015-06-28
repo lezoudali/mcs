@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.2.0'
 gem 'rails-api'
 gem 'pg'
@@ -9,6 +8,7 @@ gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'devise'
+gem 'puma'
 
 group :development do
   gem 'spring'

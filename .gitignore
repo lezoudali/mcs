@@ -4,6 +4,11 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+
+
+config/initializers/secret_token.rb
+config/secrets.yml
+
 # Ignore bundler config.
 /.bundle
 
@@ -21,3 +26,4 @@ doc/
 *.swp
 *~
 .DS_Store
+
