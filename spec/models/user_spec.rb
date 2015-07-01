@@ -22,6 +22,9 @@ describe User do
   it { should allow_value('example@domain.com').for(:email) }
   it { should validate_uniqueness_of(:auth_token)}
 
+  it { should have_many(:video_plays) }
+  it { should have_many(:watched_videos)}
+
   it "should soft delete" do 
     @user.delete
     @user.deleted_at.should_not be_nil
@@ -45,4 +48,16 @@ describe User do
       expect(@user.auth_token).not_to eql existing_user.auth_token
     end
   end
+
+  describe "videos associations" do 
+    before do 
+      @video = FactoryGirl.build :video 
+      @video_play = FactoryGirl.create :video_play, viewer: @user, watched_video: @video
+    end
+
+    it "returns videos user viewed" do 
+      expect(@user.watched_videos).to include(@video)
+    end
+  end
+
 end
