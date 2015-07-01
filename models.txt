@@ -1,0 +1,31 @@
+User
+- video_plays
+- videos
+
+McsAdmin
+- id
+- user_id
+
+Video => Mykle
+- id
+- description
+- video_url
+- model_id
+- title
+- video_plays
+- shares
+
+Model 
+- id 
+- user_id
+- has_many: videos
+
+
+Comment => Mykle
+- video_id
+- user_id
+- content
+
+VideoPlays
+- video_id
+- user_id
