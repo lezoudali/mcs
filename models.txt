@@ -20,7 +20,6 @@ Model
 - user_id
 - has_many: videos
 
-
 Comment => Mykle
 - video_id
 - user_id
