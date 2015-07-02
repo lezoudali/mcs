@@ -1,13 +1,16 @@
 class Video < ActiveRecord::Base
 	include SoftDeletable
 
-	belongs_to :model
+	belongs_to :mcs_admin
 
-	validates :title, presence: true, uniqueness: true
-	validates :description, presence: true
-	validates :source_url, presence: true, uniqueness: true
-	validates :model_id, presence: true
+  has_many :shares
+  has_many :sharers, through: :shares
+  has_many :fashion_models_videos
+  has_many :fashion_models, through: :fashion_models_videos
 
-  has_many :video_plays
-  has_many :viewers, through: :video_plays
+  validates :title, presence: true, uniqueness: true
+  validates :description, presence: true
+  validates :source_url, presence: true, uniqueness: true
+  validates :mcs_admin_id, presence: true
+
 end

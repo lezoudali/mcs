@@ -10,7 +10,7 @@ describe Authenticable do
 
   describe "#current_user" do 
     before do 
-      @user = FactoryGirl.create :user
+      @user = create_user
       request.headers["Authorization"] = @user.auth_token
       authentication.stub(:request).and_return(request)
     end
@@ -22,7 +22,7 @@ describe Authenticable do
 
   describe "#authenticate_with_token" do 
     before do 
-      @user = FactoryGirl.create :user
+      @user = create_user
       authentication.stub(:current_user).and_return(nil)
       response.stub(:response_code).and_return(401)
       response.stub(:body).and_return({"errors" => "Not authenticated"}.to_json)

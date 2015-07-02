@@ -10,12 +10,12 @@ Video => Mykle
 - id
 - description
 - video_url
-- model_id
+- fashion_model (have_many?)
 - title
 - video_plays
 - shares
 
-Model 
+FashionModel 
 - id 
 - user_id
 - has_many: videos
@@ -25,6 +25,6 @@ Comment => Mykle
 - user_id
 - content
 
-VideoPlays
+Shares
 - video_id
 - user_id
