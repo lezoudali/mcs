@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApplicationController
     user = User.find_by_id(params[:id])
     if user && user.deleted?
       render json: {errors: "user deleted", deleted_at: user.deleted_at}, status: 404
-    else
+    elsif user
       render json: user, status: 200
     end
   end
@@ -20,8 +20,7 @@ class Api::V1::UsersController < ApplicationController
 
   def update
     user = current_user
-
-    if user && user.update(user_params)
+    if user.update(user_params)
       render json: user, status: 200, location: [:api, user]
     else
       render json: { errors: user.errors }, status: 422

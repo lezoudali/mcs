@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
   before do 
-    @user = FactoryGirl.build(:user) 
+    @user = create_user
   end
   
   subject { @user }
@@ -22,8 +22,8 @@ describe User do
   it { should allow_value('example@domain.com').for(:email) }
   it { should validate_uniqueness_of(:auth_token)}
 
-  it { should have_many(:video_plays) }
-  it { should have_many(:watched_videos)}
+  it { should have_many(:shares) }
+  it { should have_many(:shared_videos)}
 
   it "should soft delete" do 
     @user.delete
@@ -43,7 +43,7 @@ describe User do
     end
 
     it "generates another token when one already has been taken" do
-      existing_user = FactoryGirl.create(:user, auth_token: "auniquetoken123")
+      existing_user = create_user auth_token: "auniquetoken123"
       @user.generate_authentication_token!
       expect(@user.auth_token).not_to eql existing_user.auth_token
     end
@@ -51,13 +51,39 @@ describe User do
 
   describe "videos associations" do 
     before do 
-      @video = FactoryGirl.build :video 
-      @video_play = FactoryGirl.create :video_play, viewer: @user, watched_video: @video
+      @video = create_video 
+      @user.save
+      @share = create_share sharer: @user, shared_video: @video
     end
 
-    it "returns videos user viewed" do 
-      expect(@user.watched_videos).to include(@video)
+    it "returns videos user shared" do 
+      expect(@user.shared_videos).to include(@video)
     end
   end
 
+  describe "mcs_admin" do 
+    context "when user is not an admin" do 
+      it "#mcs_admin? return true when user is also an admin" do 
+        expect(@user.mcs_admin?).to be false
+      end
+
+      it "returns nil for #mcs_admin" do 
+        expect(@user.mcs_admin).to be_nil
+      end
+    end
+
+    context "when user is admin" do 
+      before do 
+        @user.save
+        @mcs_admin = create_mcs_admin user_id: @user.id
+      end
+      it "#mcs_admin? return true when user is also an admin" do 
+        expect(@user.mcs_admin?).to be true
+      end
+
+      it "#mcs_admin returns the admin object" do 
+        expect(@user.mcs_admin).to eql @mcs_admin
+      end
+    end
+  end
 end

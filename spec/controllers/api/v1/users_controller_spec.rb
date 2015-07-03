@@ -3,13 +3,11 @@ require 'spec_helper'
 describe Api::V1::UsersController do
   describe "GET #show" do
     before(:each) do
-      @user = FactoryGirl.create :user
-      get :show, id: @user.id
+      @user = create_user
     end
 
     context "when user is found" do
       before(:each) do
-        @user = FactoryGirl.create :user
         get :show, id: @user.id
       end
 
@@ -23,7 +21,6 @@ describe Api::V1::UsersController do
 
     context "when user has been deleted" do
       before(:each) do
-        @user = FactoryGirl.create :user
         @user.delete
         get :show, id: @user.id
       end
@@ -42,7 +39,7 @@ describe Api::V1::UsersController do
 
     context "when is successfully created" do
       before(:each) do
-        @user_attributes = FactoryGirl.attributes_for :user
+        @user_attributes = attributes_for :user
         post :create, { user: @user_attributes }
       end
 
@@ -79,7 +76,7 @@ describe Api::V1::UsersController do
 
   describe "PUT/PATCH #update" do
     before(:each) do 
-      @user = FactoryGirl.create :user
+      @user = create_user
       api_authorization_header @user.auth_token
     end
     context "when is successfully updated" do
@@ -123,7 +120,7 @@ describe Api::V1::UsersController do
 
   describe "DELETE #destroy" do
     before(:each) do
-      @user = FactoryGirl.create :user
+      @user = create_user
       api_authorization_header @user.auth_token
       delete :destroy, { id: @user.id }
     end

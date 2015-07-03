@@ -12,6 +12,7 @@ gem 'puma'
 
 group :development do
   gem 'spring'
+  gem 'rails-erd'
 end
 
 gem 'active_model_serializers'

@@ -1,11 +1,10 @@
 require 'spec_helper'
 
 describe Api::V1::SessionsController do
+  before(:each) do 
+    @user = create_user
+  end
   describe "POST #create" do 
-    before(:each) do 
-      @user = FactoryGirl.create :user
-    end
-
     context "when the credentials are correct" do 
       before(:each) do 
         credentials = { email: @user.email, password: "12345678"}
@@ -36,7 +35,6 @@ describe Api::V1::SessionsController do
 
   describe "DELETE #destroy" do 
     before(:each) do 
-      @user = FactoryGirl.create :user
       sign_in @user
       delete :destroy, id: @user.auth_token
     end
