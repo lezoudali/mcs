@@ -8,10 +8,10 @@ module FactoryHelper
   end
 
   def method_missing(name, *args, &block)
-    factory = name.to_s.gsub(/^create_/, "")
-    begin 
-      FactoryGirl.create factory.to_sym, *args
-    rescue 
+    model = name.to_s.gsub(/^create_/, "")
+    begin
+      FactoryGirl.create model.to_sym, *args
+    rescue
       super
     end
   end
