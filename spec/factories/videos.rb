@@ -4,7 +4,7 @@ FactoryGirl.define do
     description {FFaker::HipsterIpsum.words(30).join(" ")}
     source_url {FFaker::Internet.http_url}
     mcs_admin
-    views 0
+    # views 0
   end
 
 end

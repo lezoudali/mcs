@@ -26,6 +26,10 @@ describe Video do
   it { should have_many(:shares) }
   it { should have_many(:sharers) }
 
+  it "should default views to 0" do 
+    expect(@video.views).to eql 0
+  end
+
   it "should soft delete" do 
     @video.delete
     @video.deleted_at.should_not be_nil
