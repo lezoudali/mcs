@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: {in: 2..35}
   validates :auth_token, uniqueness: true
 
+  has_many :comments
   has_many :shares
   has_many :shared_videos, through: :shares
 

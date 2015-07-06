@@ -12,6 +12,7 @@ describe User do
   it { should respond_to(:password)}
   it { should respond_to(:password_confirmation)}
   it { should respond_to(:auth_token)}
+  it { should respond_to(:comments)}
 
   it { should be_valid }
 
@@ -19,9 +20,10 @@ describe User do
   it { should validate_presence_of(:email) }
   it { should validate_uniqueness_of(:email) }
   it { should validate_confirmation_of(:password) }
-  it { should allow_value('example@domain.com').for(:email) }
   it { should validate_uniqueness_of(:auth_token)}
+  it { should allow_value('example@domain.com').for(:email) }
 
+  it { should have_many(:comments)}
   it { should have_many(:shares) }
   it { should have_many(:shared_videos)}
 

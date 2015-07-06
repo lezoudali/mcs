@@ -11,8 +11,9 @@ describe Video do
   it { should respond_to(:description)}
   it { should respond_to(:source_url)}
   it { should respond_to(:views)}
-  it { should belong_to(:mcs_admin) }
   it { should respond_to(:mcs_admin_id)}
+  it { should respond_to(:comments)}
+  it { should belong_to(:mcs_admin) }
 
   it { should be_valid }
 
@@ -24,6 +25,7 @@ describe Video do
   it { should validate_presence_of(:mcs_admin_id)}
 
   it { should have_many(:shares) }
+  it { should have_many(:comments)}
   it { should have_many(:sharers) }
 
   it "should default views to 0" do 
