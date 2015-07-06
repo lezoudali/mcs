@@ -3,6 +3,7 @@ class Video < ActiveRecord::Base
 
 	belongs_to :mcs_admin
 
+  has_many :comments
   has_many :shares
   has_many :sharers, through: :shares
   has_many :fashion_models_videos
