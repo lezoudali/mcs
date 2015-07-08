@@ -4,4 +4,8 @@ class Comment < ActiveRecord::Base
 
   validates_presence_of :user_id, :video_id
   validates :content, presence: true, length: { in: 1..300 }
+
+  def author?(author)
+    user == author
+  end
 end
