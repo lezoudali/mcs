@@ -27,13 +27,13 @@ describe User do
   it { should have_many(:shares) }
   it { should have_many(:shared_videos)}
 
-  it "should soft delete" do 
-    @user.delete
-    @user.deleted_at.should_not be_nil
-  end 
+  # it "should soft delete" do 
+  #   @user.delete
+  #   @user.deleted_at.should_not be_nil
+  # end 
 
   it "should hard delete when passed as argument" do 
-    @user.delete(mode: :hard)
+    @user.delete #(mode: :hard)
     User.count.should eql 0
   end
 
@@ -60,6 +60,25 @@ describe User do
 
     it "returns videos user shared" do 
       expect(@user.shared_videos).to include(@video)
+    end
+  end
+
+  describe "#comments association" do 
+    before do 
+      @user = create_user
+      @comments = Array.new(4) { FactoryGirl.create :comment, user_id: @user.id }
+    end
+
+    it "associates the comments to the video" do 
+      expect(@user.comments).to include @comments.first
+    end
+
+    it "destroys the associated comments on self destruct" do 
+      comments = @user.comments
+      @user.destroy #(mode: :hard)
+      comments.each do |comment|
+        expect(Comment.find(comment.id)).to raise_error ActiveRecord::RecordNotFound
+      end
     end
   end
 

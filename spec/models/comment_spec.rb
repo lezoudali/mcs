@@ -37,5 +37,9 @@ describe Comment do
     it "return user" do 
       expect(@comment.user).to eql @user
     end
-  end  
+
+    it "return true when passing the right user to #author" do 
+      expect(@comment.author?(@user)).to be true
+    end
+  end 
 end

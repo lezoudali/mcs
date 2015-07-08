@@ -1,9 +1,9 @@
 class Video < ActiveRecord::Base
-	include SoftDeletable
+	# include SoftDeletable
 
 	belongs_to :mcs_admin
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :shares
   has_many :sharers, through: :shares
   has_many :fashion_models_videos

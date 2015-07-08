@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   before_create :generate_authentication_token!
 
-  include SoftDeletable
+  # include SoftDeletable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: {in: 2..35}
   validates :auth_token, uniqueness: true
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :shares
   has_many :shared_videos, through: :shares
 

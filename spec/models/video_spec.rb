@@ -32,13 +32,13 @@ describe Video do
     expect(@video.views).to eql 0
   end
 
-  it "should soft delete" do 
-    @video.delete
-    @video.deleted_at.should_not be_nil
-  end
+  # it "should soft delete" do 
+  #   @video.delete
+  #   @video.deleted_at.should_not be_nil
+  # end
 
   it "should hard delete when passed as argument" do 
-    @video.delete(mode: :hard)
+    @video.delete #(mode: :hard)
     Video.count.should eql 0
   end
 
@@ -73,5 +73,24 @@ describe Video do
     it "returns the correct amount of videos" do 
       expect(@video.fashion_models.size).to eql(1)
     end 
+  end
+
+  describe "comments association" do 
+    before do 
+      @video = create_video 
+      @comments = Array.new(4) { create_comment(video_id: @video.id) }
+    end
+
+    it "associates the comments to the video" do 
+      expect(@video.comments).to include @comments.first
+    end
+
+    it "destroys the associated comments on self destruct" do 
+      comments = @video.comments
+      @video.destroy
+      comments.each do |comment|
+        expect(Comment.find(comment.id)).to raise_error ActiveRecord::RecordNotFound
+      end
+    end
   end
 end

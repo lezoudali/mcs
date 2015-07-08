@@ -1,8 +1,8 @@
 class Api::V1::VideosController < ApplicationController
-  before_action :check_admin, only: [:create, :update, :destroy]
+  before_action :authenticate_with_token!, :check_admin, only: [:create, :update, :destroy]
 
   def index
-    videos = Video.where(deleted_at: nil)
+    videos = Video.all #where(deleted_at: nil)
     render json: videos, status: 200
   end
 
@@ -38,7 +38,6 @@ class Api::V1::VideosController < ApplicationController
   private
 
   def check_admin
-    authenticate_with_token!
     render json: { errors: "User not an mcs_admin" }, status: 422 and return unless current_user.mcs_admin? 
   end
 
