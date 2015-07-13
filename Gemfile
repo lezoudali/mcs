@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'puma'
 gem 'skylight'
+gem 'rails_12factor', group: :production
 
 group :development do
   gem 'spring'
