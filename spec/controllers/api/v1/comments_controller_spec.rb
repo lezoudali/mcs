@@ -15,7 +15,7 @@ describe Api::V1::CommentsController do
       end
 
       it "renders a json of new comment" do 
-        comment_response = json_response
+        comment_response = json_response[:comment]
         expect(comment_response[:content]).to eql @comment_attributes[:content]
       end
 
@@ -52,7 +52,7 @@ describe Api::V1::CommentsController do
       end
 
       it "renders json for updated comment" do 
-        comment_response = json_response
+        comment_response = json_response[:comment]
         expect(comment_response[:content]).to eql "updated content"
       end
 

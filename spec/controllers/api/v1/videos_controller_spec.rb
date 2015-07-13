@@ -5,29 +5,56 @@ describe Api::V1::VideosController do
   describe "GET #show" do 
     before(:each) do 
       @video = create_video
+      2.times { create_fashion_models_video(video: @video)} 
       get :show, id: @video.id
     end
 
     it "returns info about video in a hash" do 
-      video_response = json_response
+      video_response = json_response[:video]
       expect(video_response[:title]).to eql @video.title
     end
 
-    it { should respond_with 200}
+    it "has the mcs_admin as an embedded object" do 
+      mcs_admin = @video.mcs_admin
+      video_response = json_response[:video]
+      expect(video_response[:mcs_admin][:name]).to eql mcs_admin.user.name
+    end
+
+    it "has the fashion_models as an embedded object" do 
+      video_response = json_response[:video]
+      expect(video_response[:fashion_models].size).to eql 2
+    end
+
+    it { should respond_with 200 }
   end
 
   describe "GET #index" do 
     before(:each) do 
-      4.times { create_video }
+      4.times do 
+        video = create_video 
+        3.times { create_comment video: video }
+      end
       get :index
     end
+    
+    it { should respond_with 200 }
 
-    it "returns 4 video records" do
-      videos_response = json_response
-      expect(videos_response[:videos].size).to eql(4) 
+    context "successfully get index" do 
+      subject { json_response[:videos] }
+
+      it { should have(4).items }
     end
 
-    it { should respond_with 200 }
+    context "has right keys" do
+      subject { json_response[:videos].first.keys }
+
+      it { should include :title }
+      it { should include :num_shares}
+      it { should include :num_comments }
+      it { should_not include :mcs_admin }
+      it { should_not include :fashion_models }
+    end
+
   end
 
   describe "POST #create" do 
@@ -40,8 +67,8 @@ describe Api::V1::VideosController do
       end
 
       it "renders json of newly created video" do
-        video_response = json_response
-        expect(video_response[:mcs_admin_id]).to eql @mcs_admin.id
+        video_response = json_response[:video]
+        expect(video_response[:title]).to eql @video_attributes[:title]
       end
 
       it { should respond_with 201 }
@@ -70,7 +97,7 @@ describe Api::V1::VideosController do
         user = create_user
         api_authorization_header user.auth_token
         post :create, { user_id: user.id, video: attributes_for(:video) }
-        expect(json_response[:errors]).to include "not an mcs_admin"
+        expect(json_response[:errors]).to include "User not an mcs_admin"
       end
 
       it { should respond_with 422 }
@@ -89,8 +116,9 @@ describe Api::V1::VideosController do
         patch :update, { user_id: @mcs_admin.user.id, id: @video.id, video: { title: "Kendall Jenner muy caliente LOL"}}
       end
 
-      it "renders json for updated video" do 
-        expect(json_response[:title]).to eql "Kendall Jenner muy caliente LOL"
+      it "renders json for updated video" do
+        video_response = json_response[:video]
+        expect(video_response[:title]).to eql "Kendall Jenner muy caliente LOL"
       end
 
       it { should respond_with 200 }
@@ -105,7 +133,7 @@ describe Api::V1::VideosController do
         expect(json_response.keys).to include(:errors)
       end
 
-      it "renders validation errors" do 
+      it "renders validation errors" do
         expect(json_response[:errors][:title]).to include "can't be blank"
       end
 
@@ -114,7 +142,7 @@ describe Api::V1::VideosController do
         user = create_user
         api_authorization_header user.auth_token
         patch :update, { user_id: user.id, id: @video.id, video: { title: "Kendall Jenner"}}
-        expect(json_response[:errors]).to include "not an mcs_admin"
+        expect(json_response[:errors]).to include "User not an mcs_admin"
       end
 
       it { should respond_with 422 }
@@ -139,20 +167,7 @@ describe Api::V1::VideosController do
       user = create_user
       api_authorization_header user.auth_token
       delete :destroy, { user_id: @mcs_admin.user.id, id: @video.id }
-      expect(json_response[:errors]).to include("not an mcs_admin")
+      expect(json_response[:errors]).to include("User not an mcs_admin")
     end
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-

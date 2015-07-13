@@ -14,4 +14,14 @@ class Video < ActiveRecord::Base
   validates :source_url, presence: true, uniqueness: true
   validates :mcs_admin_id, presence: true
 
+
+  def num_comments
+    comments.count
+  end
+
+  def num_shares
+    shares.count
+  end
+
 end
+#Scope comment

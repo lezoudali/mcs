@@ -1,13 +1,14 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :authenticate_with_token!, only: [:update, :destroy]
+  before_action :authenticate_with_token!, only: [:show, :update, :destroy]
   
   def show
     user = User.find_by_id(params[:id])
-    if user && user.deleted?
-      render json: {errors: "user deleted", deleted_at: user.deleted_at}, status: 404
-    elsif user
-      render json: user, status: 200
+    if user 
+      render json: user, status: 200 
+    else 
+      render json: { errors: ["User Not Found"]}
     end
+    #render json: {errors: "user deleted", deleted_at: user.deleted_at}, status: 404
   end
 
   def create

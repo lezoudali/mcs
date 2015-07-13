@@ -9,6 +9,7 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'devise'
 gem 'puma'
+gem 'skylight'
 
 group :development do
   gem 'spring'
@@ -23,6 +24,7 @@ group :doc do
 end
 
 group :development, :test do 
+  gem 'rspec-collection_matchers'
   gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'pry-rails'

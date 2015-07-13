@@ -42,14 +42,19 @@ describe Video do
     Video.count.should eql 0
   end
 
-  describe "viewers associations" do 
+  describe "sharings associations" do 
     before do 
       @user = create_user
-      @video_play = create_share sharer: @user, shared_video: @video
+      create_share sharer: @user, shared_video: @video
+      create_share sharer: create_user, shared_video: @video
     end
 
     it "returns #users who shared the video" do 
       expect(@video.sharers).to include(@user)
+    end
+
+    it "returns number of sharers" do 
+      expect(@video.num_shares).to eql 2
     end
   end
 
@@ -91,6 +96,10 @@ describe Video do
       comments.each do |comment|
         expect(Comment.find(comment.id)).to raise_error ActiveRecord::RecordNotFound
       end
+    end
+
+    it "returns the num_comments" do
+      expect(@video.num_comments).to eql 4
     end
   end
 end
