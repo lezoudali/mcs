@@ -2,13 +2,13 @@ class Api::V1::VideosController < ApplicationController
   before_action :authenticate_with_token!, :check_admin, only: [:create, :update, :destroy]
 
   def index
-    videos = Video.all #where(deleted_at: nil)
-    render json: videos, status: 200
+    videos = Video.all #pagination, cursor, max id, since ids, will_paginate?, .limit
+    render json: videos, each_serializer: VideoIndexSerializer, status: 200
   end
 
   def show
-    video = Video.find(params[:id])
-    render json: video, status: 200
+    video = Video.find(params[:id]) #n+1
+    render json: video, status: 200 #counter cache
   end
 
   def create
@@ -38,10 +38,12 @@ class Api::V1::VideosController < ApplicationController
   private
 
   def check_admin
-    render json: { errors: "User not an mcs_admin" }, status: 422 and return unless current_user.mcs_admin? 
+    render json: { errors: ["User not an mcs_admin"] }, status: 422 and return unless current_user.mcs_admin? 
   end
 
   def video_params
     params.require(:video).permit(:title, :description, :views, :source_url)
   end
 end
+
+#MVP, make a safe
