@@ -1,5 +1,6 @@
 class VideoSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :source_url, :views, :num_comments, :num_shares
+  attributes :id, :title, :description, :source_url, :views, :num_comments,
+  :num_shares, :index_num
 
   has_one :mcs_admin
   has_many :fashion_models
