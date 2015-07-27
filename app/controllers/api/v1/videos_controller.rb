@@ -2,7 +2,7 @@ class Api::V1::VideosController < ApplicationController
   before_action :authenticate_with_token!, :check_admin, only: [:create, :update, :destroy]
 
   def index
-    videos = Video.all #pagination, cursor, max id, since ids, will_paginate?, .limit
+    videos = Video.includes(:comments).all #pagination, cursor, max id, since ids, will_paginate?, .limit
     render json: videos, each_serializer: VideoIndexSerializer, status: 200
   end
 
