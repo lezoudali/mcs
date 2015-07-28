@@ -7,7 +7,7 @@ class Api::V1::VideosController < ApplicationController
   end
 
   def show
-    video = Video.includes(:comments).find(params[:id])#n+1
+    video = Video.includes(:comments, :shares).find(params[:id])#n+1
     render json: video, status: 200 #counter cache
   end
 
