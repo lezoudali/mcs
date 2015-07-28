@@ -53,6 +53,8 @@ describe Api::V1::VideosController do
       it { should include :num_comments }
       it { should_not include :mcs_admin }
       it { should_not include :fashion_models }
+      it { should include :index_num }
+      it { should include :poster_image_url }
     end
 
   end

@@ -1,6 +1,6 @@
 class VideoSerializer < ActiveModel::Serializer
   attributes :id, :title, :description, :source_url, :views, :num_comments,
-  :num_shares, :index_num
+  :num_shares, :index_num, :poster_image_url
 
   has_one :mcs_admin
   has_many :fashion_models
@@ -14,4 +14,3 @@ class VideoSerializer < ActiveModel::Serializer
   end
 end
 
-#inherit?

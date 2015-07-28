@@ -7,12 +7,14 @@ describe Video do
   
   subject { @video }
 
-  it { should respond_to(:title)}
-  it { should respond_to(:description)}
-  it { should respond_to(:source_url)}
-  it { should respond_to(:views)}
-  it { should respond_to(:mcs_admin_id)}
-  it { should respond_to(:comments)}
+  it { should respond_to(:title) }
+  it { should respond_to(:description) }
+  it { should respond_to(:source_url) }
+  it { should respond_to(:views) }
+  it { should respond_to(:mcs_admin_id) }
+  it { should respond_to(:comments) }
+  it { should respond_to(:index_num) }
+  it { should respond_to(:poster_image_url) }
   it { should belong_to(:mcs_admin) }
 
   it { should be_valid }
@@ -23,6 +25,11 @@ describe Video do
   it { should validate_presence_of(:source_url) }
   it { should validate_uniqueness_of(:source_url) }
   it { should validate_presence_of(:mcs_admin_id)}
+  it { should validate_presence_of(:index_num)}
+  it { should validate_uniqueness_of(:index_num)}
+  it { should validate_presence_of(:poster_image_url) }
+  it { should validate_uniqueness_of(:poster_image_url)}
+
 
   it { should have_many(:shares) }
   it { should have_many(:comments)}
