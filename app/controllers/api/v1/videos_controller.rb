@@ -2,12 +2,12 @@ class Api::V1::VideosController < ApplicationController
   before_action :authenticate_with_token!, :check_admin, only: [:create, :update, :destroy]
 
   def index
-    videos = Video.all #pagination, cursor, max id, since ids, will_paginate?, .limit
+    videos = Video.includes(:comments, :shares).all #pagination, cursor, max id, since ids, will_paginate?, .limit
     render json: videos, each_serializer: VideoIndexSerializer, status: 200
   end
 
   def show
-    video = Video.includes(:comments).find(params[:id])#n+1
+    video = Video.includes(:comments, :shares).find(params[:id])#n+1
     render json: video, status: 200 #counter cache
   end
 
@@ -42,7 +42,7 @@ class Api::V1::VideosController < ApplicationController
   end
 
   def video_params
-    params.require(:video).permit(:title, :description, :views, :source_url)
+    params.require(:video).permit(:title, :description, :views, :source_url, :index_num, :poster_image_url)
   end
 end
 

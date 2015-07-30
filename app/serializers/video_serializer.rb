@@ -14,4 +14,3 @@ class VideoSerializer < ActiveModel::Serializer
   end
 end
 
-#inherit?
