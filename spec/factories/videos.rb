@@ -5,6 +5,7 @@ FactoryGirl.define do
     source_url {FFaker::Internet.http_url}
     index_num {rand(1..1000000)}
     poster_image_url {FFaker::Internet.http_url}
+    model_name {FFaker::Name.name}
     mcs_admin
   end
 

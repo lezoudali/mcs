@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Video do
   before do 
-    @video = create_video
+    @video = FactoryGirl.create(:video)
   end
   
   subject { @video }
@@ -15,6 +15,7 @@ describe Video do
   it { should respond_to(:comments) }
   it { should respond_to(:index_num) }
   it { should respond_to(:poster_image_url) }
+  it { should respond_to(:model_name) }
   it { should belong_to(:mcs_admin) }
 
   it { should be_valid }
