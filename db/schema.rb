@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150727161728) do
+ActiveRecord::Schema.define(version: 20150810160235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150727161728) do
     t.string   "instagram"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
   end
 
   create_table "fashion_models_videos", force: :cascade do |t|
@@ -78,16 +79,17 @@ ActiveRecord::Schema.define(version: 20150727161728) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "videos", force: :cascade do |t|
-    t.string   "title",                        null: false
-    t.text     "description",                  null: false
-    t.string   "source_url",                   null: false
-    t.integer  "views",            default: 0, null: false
+    t.string   "title",                          null: false
+    t.text     "description",                    null: false
+    t.string   "source_url",                     null: false
+    t.integer  "views",              default: 0, null: false
     t.datetime "deleted_at"
     t.integer  "mcs_admin_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "index_num"
     t.string   "poster_image_url"
+    t.string   "fashion_model_name"
   end
 
   add_index "videos", ["mcs_admin_id"], name: "index_videos_on_mcs_admin_id", using: :btree

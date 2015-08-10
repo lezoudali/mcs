@@ -31,7 +31,7 @@ describe Api::V1::VideosController do
   describe "GET #index" do 
     before(:each) do 
       4.times do 
-        video = create_video 
+        video = create_video
         3.times { create_comment video: video }
       end
       get :index
@@ -55,6 +55,7 @@ describe Api::V1::VideosController do
       it { should_not include :fashion_models }
       it { should include :index_num }
       it { should include :poster_image_url }
+      it { should include :fashion_model_name }
     end
 
   end

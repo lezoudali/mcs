@@ -15,6 +15,7 @@ describe Video do
   it { should respond_to(:comments) }
   it { should respond_to(:index_num) }
   it { should respond_to(:poster_image_url) }
+  it { should respond_to(:fashion_model_name) }
   it { should belong_to(:mcs_admin) }
 
   it { should be_valid }
@@ -29,6 +30,7 @@ describe Video do
   it { should validate_uniqueness_of(:index_num)}
   it { should validate_presence_of(:poster_image_url) }
   it { should validate_uniqueness_of(:poster_image_url)}
+  it { should validate_presence_of(:fashion_model_name)}
 
 
   it { should have_many(:shares) }
