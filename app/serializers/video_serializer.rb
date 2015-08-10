@@ -14,15 +14,15 @@ class VideoSerializer < ActiveModel::Serializer
   end
 
   def num_likes
-    rand(150...200)
+    rand(8000..10000)
   end
 
   def num_purchases
-    rand(50..100)
+    rand(600..800)
   end
 
   def num_shares
-    rand(50..100)
+    rand(600..800)
   end
 end
 
