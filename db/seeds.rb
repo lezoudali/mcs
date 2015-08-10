@@ -79,6 +79,7 @@ Video.create({
   poster_image_url: "#{image_url}/42 jOAN SMALLS & KARMEN PEDARU.jpg",
   fashion_model_name: "JOAN SMALLS & KARMEN PEDARU",
   index_num: 7,
+  views: rand(15000..25000),
   mcs_admin_id: 1
 });
 Video.create({
