@@ -20,5 +20,9 @@ class VideoSerializer < ActiveModel::Serializer
   def num_purchases
     rand(50..100)
   end
+
+  def num_shares
+    rand(50..100)
+  end
 end
 
