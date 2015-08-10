@@ -15,6 +15,7 @@ class Video < ActiveRecord::Base
   validates :mcs_admin_id, presence: true
   validates :index_num, presence: true, uniqueness: true
   validates :poster_image_url, presence: true, uniqueness: true
+  validates :fashion_model_name, presence: true
 
 
   def num_comments
