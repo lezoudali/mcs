@@ -19,7 +19,7 @@ Video.create({
   poster_image_url: "#{image_url}/36 ANDREEA-DIDDY.jpg",
   views: rand(15000..25000),
   fashion_model_name: "ANDREEA DIDDY",
-  index_num: 1,
+  index_num: 115,
   mcs_admin_id: 1
 });
 Video.create({
@@ -29,7 +29,7 @@ Video.create({
   poster_image_url: "#{image_url}/37 AGYNESS-DEYN.jpg",
   views: rand(15000..25000),
   fashion_model_name: "AGYNESS DEYN",
-  index_num: 2,
+  index_num: 114,
   mcs_admin_id: 1
 });
 Video.create({
@@ -39,7 +39,7 @@ Video.create({
   poster_image_url: "#{image_url}/38 DOUTZEN KROES.jpg",
   views: rand(15000..25000),
   fashion_model_name: "DOUTZEN KROES",
-  index_num: 3,
+  index_num: 113,
   mcs_admin_id: 1
 });
 Video.create({
@@ -49,7 +49,7 @@ Video.create({
   poster_image_url: "#{image_url}/39 KENDAL JENNER.jpg",
   views: rand(15000..25000),
   fashion_model_name: "KENDAL JENNER",
-  index_num: 4,
+  index_num: 112,
   mcs_admin_id: 1
 });
 Video.create({
@@ -59,7 +59,7 @@ Video.create({
   poster_image_url: "#{image_url}/40 BEST FRIENDS.jpg",
   views: rand(15000..25000),
   fashion_model_name: "ANDIE ARTHUR & ENJA REVA",
-  index_num: 5,
+  index_num: 111,
   mcs_admin_id: 1
 });
 Video.create({
@@ -69,7 +69,7 @@ Video.create({
   poster_image_url: "#{image_url}/41 JORDAN DUNN.jpg",
   views: rand(15000..25000),
   fashion_model_name: "JORDAN DUNN",
-  index_num: 6,
+  index_num: 110,
   mcs_admin_id: 1
 });
 Video.create({
@@ -78,7 +78,7 @@ Video.create({
   source_url: "#{video_url}/o/7_ DO YOUR PARENTS KNOW.mp4?alt=media",
   poster_image_url: "#{image_url}/42 jOAN SMALLS & KARMEN PEDARU.jpg",
   fashion_model_name: "JOAN SMALLS & KARMEN PEDARU",
-  index_num: 7,
+  index_num: 109,
   views: rand(15000..25000),
   mcs_admin_id: 1
 });
@@ -89,7 +89,7 @@ Video.create({
   poster_image_url: "#{image_url}/43 BELLA HADID.jpg",
   fashion_model_name: "BELLA HADID",
   views: rand(15000..25000),
-  index_num: 8,
+  index_num: 108,
   mcs_admin_id: 1
 });
 Video.create({
@@ -99,7 +99,7 @@ Video.create({
   poster_image_url: "#{image_url}/44 CARA DELEVINGNE.jpg",
   fashion_model_name: "CARA DELEVINGNE",
   views: rand(15000..25000),
-  index_num: 9,
+  index_num: 107,
   mcs_admin_id: 1
 });
 Video.create({
@@ -109,7 +109,7 @@ Video.create({
   poster_image_url: "#{image_url}/45 GIGI-HADID.jpg",
   fashion_model_name: "GIGI HADID",
   views: rand(15000..25000),
-  index_num: 10,
+  index_num: 106,
   mcs_admin_id: 1
 });
 Video.create({
@@ -119,7 +119,7 @@ Video.create({
   poster_image_url: "#{image_url}/36 ANDREEA-DIDDY.jpg",
   views: rand(15000..25000),
   fashion_model_name: "ANDREEA DIDDY",
-  index_num: 11,
+  index_num: 105,
   mcs_admin_id: 1
 });
 Video.create({
@@ -129,7 +129,7 @@ Video.create({
   poster_image_url: "#{image_url}/37 AGYNESS-DEYN.jpg",
   fashion_model_name: "AGYNESS DEYN",
   views: rand(15000..25000),
-  index_num: 12,
+  index_num: 104,
   mcs_admin_id: 1
 });
 Video.create({
@@ -139,7 +139,7 @@ Video.create({
   poster_image_url: "#{image_url}/38 DOUTZEN KROES.jpg",
   views: rand(15000..25000),
   fashion_model_name: "DOUTZEN KROES",
-  index_num: 13,
+  index_num: 103,
   mcs_admin_id: 1
 });
 Video.create({
@@ -149,7 +149,7 @@ Video.create({
   poster_image_url: "#{image_url}/39 KENDAL JENNER.jpg",
   views: rand(15000..25000),
   fashion_model_name: "KENDAL JENNER",
-  index_num: 14,
+  index_num: 102,
   mcs_admin_id: 1
 });
 Video.create({
@@ -159,7 +159,7 @@ Video.create({
   poster_image_url: "#{image_url}/40 BEST FRIENDS.jpg",
   views: rand(15000..25000),
   fashion_model_name: "ANDIE ARTHUR & ENJA REVA",
-  index_num: 15,
+  index_num: 101,
   mcs_admin_id: 1
 });
 Video.create({
@@ -169,7 +169,7 @@ Video.create({
   poster_image_url: "#{image_url}/41 JORDAN DUNN.jpg",
   views: rand(15000..20000),
   fashion_model_name: "JORDAN DUNN",
-  index_num: 16,
+  index_num: 100,
   mcs_admin_id: 1
 });
 Video.create({
@@ -179,7 +179,7 @@ Video.create({
   poster_image_url: "#{image_url}/42 jOAN SMALLS & KARMEN PEDARU.jpg",
   views: rand(15000..25000),
   fashion_model_name: "JOAN SMALLS & KARMEN PEDARU",
-  index_num: 17,
+  index_num: 99,
   mcs_admin_id: 1
 });
 Video.create({
@@ -189,7 +189,7 @@ Video.create({
   poster_image_url: "#{image_url}/43 BELLA HADID.jpg",
   views: rand(15000..25000),
   fashion_model_name: "BELLA HADID",
-  index_num: 18,
+  index_num: 98,
   mcs_admin_id: 1
 });
 Video.create({
@@ -199,6 +199,6 @@ Video.create({
   poster_image_url: "#{image_url}/44 CARA DELEVINGNE.jpg",
   views: rand(15000..25000),
   fashion_model_name: "CARA DELEVINGNE",
-  index_num: 19,
+  index_num: 97,
   mcs_admin_id: 1
 });
