@@ -15,7 +15,7 @@ image_url = "https://storage.googleapis.com/models-can-smile-images"
 Video.create({
   title: "Ice Cream",
   description: "Ice cream",
-  source_url: "#{video_url}/o/10_ BESIDE FASHION.mp4?alt=media",
+  source_url: "#{video_url}/o/1_ ICE CREAM.mp4?&alt=media",
   poster_image_url: "#{image_url}/45 GIGI-HADID.jpg",
   views: rand(15000..25000),
   fashion_model_name: "GIGI HADID",
@@ -105,7 +105,7 @@ Video.create({
 Video.create({
   title: "Beside Fashion",
   description: "Beside Fashion",
-  source_url: "#{video_url}/o/1_ ICE CREAM.mp4?&alt=media",
+  source_url: "#{video_url}/o/10_ BESIDE FASHION.mp4?alt=media",
   poster_image_url: "#{image_url}/36 ANDREEA-DIDDY.jpg",
   fashion_model_name: "ANDREA DIDDY",
   views: rand(15000..25000),
