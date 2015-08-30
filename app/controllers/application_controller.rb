@@ -7,6 +7,7 @@ class ApplicationController < ActionController::API
 
   after_action :cors_set_access_control_header
 
+  private
   def cors_set_access_control_header
     headers['Access-Control-Allow-Origin'] = '*'
   end

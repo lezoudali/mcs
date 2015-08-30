@@ -11,8 +11,9 @@ gem 'devise'
 gem 'puma'
 gem 'pry-rails'
 gem 'pry-nav'
+gem 'rack-cors', :require => 'rack/cors'
 
-group :production do 
+group :production do
   gem 'skylight'
   gem 'rails_12factor'
 end
@@ -30,7 +31,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :development, :test do 
+group :development, :test do
   gem 'rspec-collection_matchers'
   gem 'factory_girl_rails'
   gem 'ffaker'
