@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe User do
-  before do 
+  before do
     @user = create_user
   end
-  
+
   subject { @user }
 
   it { should respond_to(:name) }
@@ -16,7 +16,6 @@ describe User do
 
   it { should be_valid }
 
-  it { should validate_presence_of(:name) }
   it { should validate_presence_of(:email) }
   it { should validate_uniqueness_of(:email) }
   it { should validate_confirmation_of(:password) }
@@ -27,18 +26,18 @@ describe User do
   it { should have_many(:shares) }
   it { should have_many(:shared_videos)}
 
-  # it "should soft delete" do 
+  # it "should soft delete" do
   #   @user.delete
   #   @user.deleted_at.should_not be_nil
-  # end 
+  # end
 
-  it "should hard delete when passed as argument" do 
+  it "should hard delete when passed as argument" do
     @user.delete #(mode: :hard)
     User.count.should eql 0
   end
 
-  describe "#generate_authentication_token!" do 
-    it "generates a unique token" do 
+  describe "#generate_authentication_token!" do
+    it "generates a unique token" do
       Devise.stub(:friendly_token).and_return("auniquetoken123")
       @user.generate_authentication_token!
       expect(@user.auth_token).to eql("auniquetoken123")
@@ -51,29 +50,29 @@ describe User do
     end
   end
 
-  describe "videos associations" do 
-    before do 
-      @video = create_video 
+  describe "videos associations" do
+    before do
+      @video = create_video
       @user.save
       @share = create_share sharer: @user, shared_video: @video
     end
 
-    it "returns videos user shared" do 
+    it "returns videos user shared" do
       expect(@user.shared_videos).to include(@video)
     end
   end
 
-  describe "#comments association" do 
-    before do 
+  describe "#comments association" do
+    before do
       @user = create_user
       @comments = Array.new(4) { FactoryGirl.create :comment, user_id: @user.id }
     end
 
-    it "associates the comments to the video" do 
+    it "associates the comments to the video" do
       expect(@user.comments).to include @comments.first
     end
 
-    it "destroys the associated comments on self destruct" do 
+    it "destroys the associated comments on self destruct" do
       comments = @user.comments
       @user.destroy #(mode: :hard)
       comments.each do |comment|
@@ -82,27 +81,27 @@ describe User do
     end
   end
 
-  describe "mcs_admin" do 
-    context "when user is not an admin" do 
-      it "#mcs_admin? return true when user is also an admin" do 
+  describe "mcs_admin" do
+    context "when user is not an admin" do
+      it "#mcs_admin? return true when user is also an admin" do
         expect(@user.mcs_admin?).to be false
       end
 
-      it "returns nil for #mcs_admin" do 
+      it "returns nil for #mcs_admin" do
         expect(@user.mcs_admin).to be_nil
       end
     end
 
-    context "when user is admin" do 
-      before do 
+    context "when user is admin" do
+      before do
         @user.save
         @mcs_admin = create_mcs_admin user_id: @user.id
       end
-      it "#mcs_admin? return true when user is also an admin" do 
+      it "#mcs_admin? return true when user is also an admin" do
         expect(@user.mcs_admin?).to be true
       end
 
-      it "#mcs_admin returns the admin object" do 
+      it "#mcs_admin returns the admin object" do
         expect(@user.mcs_admin).to eql @mcs_admin
       end
     end
