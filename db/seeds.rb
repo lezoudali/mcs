@@ -16,9 +16,9 @@ Video.create({
   title: "Ice Cream",
   description: "Ice cream",
   source_url: "#{video_url}/o/1_ ICE CREAM.mp4?&alt=media",
-  poster_image_url: "#{image_url}/36 ANDREEA-DIDDY.jpg",
+  poster_image_url: "#{image_url}/45 GIGI-HADID.jpg",
   views: rand(15000..25000),
-  fashion_model_name: "ANDREEA DIDDY",
+  fashion_model_name: "GIGI HADID",
   index_num: 115,
   mcs_admin_id: 1
 });
@@ -106,8 +106,8 @@ Video.create({
   title: "Beside Fashion",
   description: "Beside Fashion",
   source_url: "#{video_url}/o/10_ BESIDE FASHION.mp4?alt=media",
-  poster_image_url: "#{image_url}/45 GIGI-HADID.jpg",
-  fashion_model_name: "GIGI HADID",
+  poster_image_url: "#{image_url}/36 ANDREEA-DIDDY.jpg",
+  fashion_model_name: "ANDREA DIDDY",
   views: rand(15000..25000),
   index_num: 106,
   mcs_admin_id: 1

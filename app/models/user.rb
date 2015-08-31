@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :name, presence: true, length: {in: 2..35}
   validates :auth_token, uniqueness: true
 
   has_many :comments, dependent: :destroy
@@ -15,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :shared_videos, through: :shares
 
   def generate_authentication_token!
-    begin 
+    begin
       self.auth_token = Devise.friendly_token
     end while self.class.exists?(auth_token: auth_token)
   end
