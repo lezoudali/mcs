@@ -1,4 +1,4 @@
-class Users::SessionsController < Devise::SessionsController
+class Api::V1::Users::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
