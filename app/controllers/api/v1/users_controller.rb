@@ -1,12 +1,12 @@
 class Api::V1::UsersController < ApplicationController
   before_action :authenticate_with_token!, only: [:show, :update, :destroy]
-  
+
   def show
     user = User.find_by_id(params[:id])
-    if user 
-      render json: user, status: 200 
-    else 
-      render json: { errors: ["User Not Found"]}
+    if user
+      render json: user, status: 200
+    else
+      render json: { errors: ["User Not Found"]}, status: 422
     end
     #render json: {errors: "user deleted", deleted_at: user.deleted_at}, status: 404
   end
@@ -34,6 +34,14 @@ class Api::V1::UsersController < ApplicationController
     head 204
   end
 
+  def current
+    if current_user
+      render json: current_user, status: 200
+    else
+      render json: { errors: ["User Not Found"]}
+    end
+  end
+
   private
 
   def user_params
@@ -41,4 +49,3 @@ class Api::V1::UsersController < ApplicationController
   end
 
 end
-
