@@ -16,9 +16,11 @@ Rails.application.routes.draw do
 
       resources :videos, only: [:show, :index] do
         resources :comments, only: [:create, :update]
+        resources :video_likes, only: :create
       end
 
       resources :comments, only: :destroy
+      resources :video_likes, only: :destroy
     end
   end
 end

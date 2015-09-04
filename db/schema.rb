@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810160235) do
+ActiveRecord::Schema.define(version: 20150901200316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(version: 20150810160235) do
     t.integer  "video_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.string   "user_id"
+    t.string   "video_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "mcs_admins", force: :cascade do |t|
@@ -78,6 +85,16 @@ ActiveRecord::Schema.define(version: 20150810160235) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "video_likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "video_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "video_likes", ["user_id"], name: "index_video_likes_on_user_id", using: :btree
+  add_index "video_likes", ["video_id"], name: "index_video_likes_on_video_id", using: :btree
+
   create_table "videos", force: :cascade do |t|
     t.string   "title",                          null: false
     t.text     "description",                    null: false
@@ -96,4 +113,6 @@ ActiveRecord::Schema.define(version: 20150810160235) do
 
   add_foreign_key "comments", "users"
   add_foreign_key "comments", "videos"
+  add_foreign_key "video_likes", "users"
+  add_foreign_key "video_likes", "videos"
 end

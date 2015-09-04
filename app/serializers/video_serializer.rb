@@ -25,4 +25,3 @@ class VideoSerializer < ActiveModel::Serializer
     rand(600..800)
   end
 end
-

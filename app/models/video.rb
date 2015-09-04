@@ -8,6 +8,7 @@ class Video < ActiveRecord::Base
   has_many :sharers, through: :shares
   has_many :fashion_models_videos
   has_many :fashion_models, through: :fashion_models_videos
+  has_many :video_likes
 
   validates :title, presence: true, uniqueness: true
   validates :description, presence: true
@@ -17,6 +18,9 @@ class Video < ActiveRecord::Base
   validates :poster_image_url, presence: true, uniqueness: true
   validates :fashion_model_name, presence: true
 
+  def num_likes
+    video_likes.count
+  end
 
   def num_comments
     comments.count

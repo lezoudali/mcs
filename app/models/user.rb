@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :shares
   has_many :shared_videos, through: :shares
+  has_many :video_likes
+  has_many :videos_liked, through: :video_likes, source: :video
 
   def generate_authentication_token!
     begin

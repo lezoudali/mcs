@@ -16,7 +16,13 @@ describe Video do
   it { should respond_to(:index_num) }
   it { should respond_to(:poster_image_url) }
   it { should respond_to(:fashion_model_name) }
+  it { should respond_to(:video_likes)}
+  it { should respond_to(:num_likes)}
+  it { should respond_to(:num_comments)}
+  it { should respond_to(:num_shares)}
+
   it { should belong_to(:mcs_admin) }
+
 
   it { should be_valid }
 
@@ -31,6 +37,7 @@ describe Video do
   it { should validate_presence_of(:poster_image_url) }
   it { should validate_uniqueness_of(:poster_image_url)}
   it { should validate_presence_of(:fashion_model_name)}
+
 
 
   it { should have_many(:shares) }
@@ -64,6 +71,21 @@ describe Video do
 
     it "returns number of sharers" do 
       expect(@video.num_shares).to eql 2
+    end
+  end
+
+
+  describe "#video_likes association" do 
+    before do 
+      @likes = 4.times.map { FactoryGirl.create :video_like, video: @video }
+    end
+
+    it "return videos liked" do 
+      expect(@video.video_likes).to eq @likes
+    end
+
+    it "return #num_likes" do 
+      expect(@video.num_likes).to eq 4
     end
   end
 
