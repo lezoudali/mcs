@@ -13,6 +13,8 @@ describe User do
   it { should respond_to(:password_confirmation)}
   it { should respond_to(:auth_token)}
   it { should respond_to(:comments)}
+  it { should respond_to(:video_likes)}
+  it { should respond_to(:videos_liked)}
 
   it { should be_valid }
 
@@ -78,6 +80,20 @@ describe User do
       comments.each do |comment|
         expect(Comment.find(comment.id)).to raise_error ActiveRecord::RecordNotFound
       end
+    end
+  end
+
+  describe "#video_likes association" do 
+    before do 
+      @likes = 4.times.map { FactoryGirl.create :video_like, user: @user }
+    end
+
+    it "return #video_likes" do 
+      expect(@user.video_likes).to eq @likes
+    end
+
+    it "return #videos_liked" do 
+      expect(@user.videos_liked).to include @likes.first.video
     end
   end
 

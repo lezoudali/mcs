@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :video_like do
-    references ""
-references ""
+    user 
+    video 
   end
 
 end

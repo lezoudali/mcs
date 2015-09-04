@@ -1,5 +1,6 @@
 class Api::V1::CommentsController < ApplicationController
-  before_action :authenticate_with_token!, :set_video, only: [:create, :update]
+  before_action :authenticate_with_token!, only: [:create, :update, :destroy]
+  before_action :set_video, only: [:create, :update]
   before_action :set_comment, :check_author, only: [:update, :destroy]
 
 
@@ -23,7 +24,7 @@ class Api::V1::CommentsController < ApplicationController
 
   def destroy
     comment = current_user.comments.find(params[:id])
-    comment.destroy
+    comment.destroy if comment
     head 204
   end
 
