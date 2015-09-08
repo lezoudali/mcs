@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       end
 
       resources :comments, only: :destroy
-      resources :video_likes, only: :destroy
+      resources :video_likes, only: [:index, :destroy]
     end
   end
 end
