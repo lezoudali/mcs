@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 20150901200316) do
     t.string   "instagram"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "name"
   end
 
   create_table "fashion_models_videos", force: :cascade do |t|
@@ -43,8 +42,8 @@ ActiveRecord::Schema.define(version: 20150901200316) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.string   "user_id"
-    t.string   "video_id"
+    t.integer  "user_id"
+    t.integer  "video_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
